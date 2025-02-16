@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://serche-pearl.vercel.app/sitemap.xml

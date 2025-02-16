@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session ,send_from_directory
+from flask import Flask, render_template, request, redirect, url_for, session ,Response
 from store import Post, PostStore
 from supabase import create_client, Client
 import os
@@ -33,14 +33,23 @@ def takafa():
     posts = [post for post in post_store.get_all() if post.page == 'takafa']
     return render_template('takafa.html', posts=posts)
 
-@app.route('/robots.txt')
-def robots():
-    return send_from_directory(app.static_folder, 'robots.txt')
-
-# Route for sitemap.xml
 @app.route('/sitemap.xml')
 def sitemap():
-    return send_from_directory(app.static_folder, 'sitemap.xml')
+    sitemap_xml = '''<?xml version="1.0" encoding="UTF-8"?>
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+       <url>
+          <loc>https://serche-pearl.vercel.app/</loc>
+          <lastmod>2025-02-15</lastmod>
+          <priority>1.0</priority>
+       </url>
+    </urlset>'''
+    response=app.response(sitemap_xml, mimetype='application/xml')
+    return response
+
+@app.route('/robots.txt')
+def robots():
+    robots_txt = "User-agent: *\nAllow: /\nSitemap: https://serche-pearl.vercel.app/sitemap.xml"
+    return Response(robots_txt, mimetype="text/plain")
 
 
 @app.route('/')
