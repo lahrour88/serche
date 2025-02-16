@@ -38,12 +38,13 @@ def sitemap():
     sitemap_xml = '''<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
        <url>
-          <loc>https://serche-pearl.vercel.app/</loc>
+          <loc>https://serche-pearl.vercel.app</loc>
           <lastmod>2025-02-15</lastmod>
           <priority>1.0</priority>
        </url>
     </urlset>'''
-    response=app.response(sitemap_xml, mimetype='application/xml')
+    
+    response = Response(sitemap_xml, mimetype='application/xml')
     return response
 
 @app.route('/robots.txt')
