@@ -33,19 +33,41 @@ def takafa():
     posts = [post for post in post_store.get_all() if post.page == 'takafa']
     return render_template('takafa.html', posts=posts)
 
+
 @app.route('/sitemap.xml')
 def sitemap():
     sitemap_xml = '''<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
        <url>
-          <loc>https://serche-pearl.vercel.app</loc>
+          <loc>https://serche-pearl.vercel.app/</loc>
           <lastmod>2025-02-15</lastmod>
           <priority>1.0</priority>
+       </url>
+       <url>
+          <loc>https://serche-pearl.vercel.app/arabec</loc>
+          <lastmod>2025-02-15</lastmod>
+          <priority>0.8</priority>
+       </url>
+       <url>
+          <loc>https://serche-pearl.vercel.app/login</loc>
+          <lastmod>2025-02-15</lastmod>
+          <priority>0.8</priority>
+       </url>
+       <url>
+          <loc>https://serche-pearl.vercel.app/takafa</loc>
+          <lastmod>2025-02-15</lastmod>
+          <priority>0.7</priority>
+       </url>
+       <url>
+          <loc>https://serche-pearl.vercel.app/page1</loc>
+          <lastmod>2025-02-15</lastmod>
+          <priority>0.7</priority>
        </url>
     </urlset>'''
     
     response = Response(sitemap_xml, mimetype='application/xml')
     return response
+
 
 @app.route('/robots.txt')
 def robots():
