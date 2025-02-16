@@ -21,12 +21,13 @@ def load_posts():
                         photo_url=post['photo_url'],
                         date=post['date'],
                         body=post['body'],
+                        title=post['title'],
                         vedio=post['vedio'],
                         page=post['page'])  # إضافة حقل الصفحة
         post_store.add(new_post)
         app.current_id = max(app.current_id, new_post.id + 1)
-
 load_posts()
+
 @app.route('/takafa')
 def takafa():
     posts = [post for post in post_store.get_all() if post.page == 'takafa']
@@ -82,6 +83,7 @@ def post_add():
                         date=request.form['date'],
                         photo_url=request.form['photo_url'],
                         body=request.form['body'],
+                        title=request.form['title'],
                         vedio=request.form['vedio'],
                         page=selected_page)  # إضافة الصفحة المرتبطة
         post_store.add(new_post)
@@ -93,6 +95,7 @@ def post_add():
             "date": new_post.date,
             "body": new_post.body,
             "vedio":new_post.vedio,
+            "title": new_post.title,
             "page": new_post.page  # إضافة حقل الصفحة
         }
         supabase.table('lahrour').insert(data).execute()

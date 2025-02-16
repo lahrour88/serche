@@ -26,21 +26,23 @@ span{
     border: 1.5px solid rgb(196, 203, 203);
 }
     .paragraph {
-        max-height: 100px; /* يتم تحديد ارتفاع افتراضي */
+         /* يتم تحديد ارتفاع افتراضي */
         overflow: hidden;
-        transition: max-height 0.3s ease-in-out;
+        transition: 0s ease-in-out;
+        height: 100%;
       }
       
       .paragraph.collapsed {
-        max-height: 28px;
+        width: 97%;
+        max-height: 60px;
       }
       
 .paragraph{
     color: rgb(36, 36, 36);
     font-size: 16px;
     line-height: 2;
-    width: 97%;
-    margin-right: 10px;
+    margin-right: 20px;
+    width: 94%;
 }
 .article .toggle-link{
     color: rgb(62, 60, 63);
